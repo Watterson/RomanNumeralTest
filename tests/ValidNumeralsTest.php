@@ -7,33 +7,33 @@ use PHPUnit\Framework\TestCase;
 class ValidNumeralsTest extends TestCase
 {
     /**
-     * @param $numeral The numeral to convert
+     * @param $number The numeral to convert
      * @param $expected Expected output
      * @throws \PhpNwSykes\InvalidNumeral
      * @dataProvider numeralMapping
      */
-    public function testValidInput($numeral, $expected)
+    public function testValidInput($number, $expected)
     {
-        $roman = new RomanNumeral($numeral);
-        $this->assertSame($expected, $roman->toInt());
+        $roman = new RomanNumeral($number);
+        $this->assertSame($expected, $roman->toNumeral());
     }
 
     public function numeralMapping()
     {
         return [
-            ['X', 10],
-            ['IX', 9],
-            ['V', 5],
-            ['IV', 4],
-            ['III', 3],
-            ['MMX', 2010],
-            ['CD', 400],
+            [10, 'X'],
+            [9, 'IX'],
+            [5, 'V'],
+            [4, 'IV'],
+            [3, 'III'],
+            [2010, 'MMX'],
+            [400, 'CD'],
         ];
     }
 
     public function testDoubleParse()
     {
-        $roman = new RomanNumeral('MX');
-        $this->assertSame(1010, $roman->toInt());
+        $roman = new RomanNumeral(1010);
+        $this->assertSame('MX', $roman->toNumeral());
     }
 }

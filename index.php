@@ -23,16 +23,16 @@ $negativeTests = [
 ?>
 <h2>Valid Tests</h2>
 <?php
-foreach ($positiveTests as $numerial => $expected) {
-    printf('<p>%s should be %s - Result %s</p>', $numerial, $expected, ((new RomanNumeral($numerial))->toInt() === $expected) ? 'PASS' : 'FAIL');
+foreach ($positiveTests as $number => $expected) {
+    printf('<p>%s should be %s - Result %s</p>', $number, $expected, ((new RomanNumeral($number))->toNumeral() === $expected) ? 'PASS' : 'FAIL');
 }
 ?>
 <h2>Invalid Tests</h2>
 <?php
-foreach($negativeTests as $numerial) {
+foreach($negativeTests as $number) {
     $exception = false;
     try {
-        (new RomanNumeral($numerial))->toInt(); 
+        (new RomanNumeral($number))->toNumeral();
     } catch (\Exception $e) {
         $exception = true;
     }

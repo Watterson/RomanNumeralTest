@@ -12,21 +12,19 @@ class InvalidNumeralsTest extends TestCase
      * @dataProvider badMappings
      * @throws InvalidNumeral
      */
-    public function testInvalidOutput($numeral)
+    public function testInvalidOutput($number)
     {
+        $roman = new RomanNumeral($number);
+        $roman->toNumeral();
         $this->expectException(InvalidNumeral::class);
-        $roman = new RomanNumeral($numeral);
-        $roman->toInt();
+
     }
 
     public function badMappings(): array
     {
         return [
-            ['Bad'],
-            ['XI Something'],
-            ['Something MM'],
-            ['-X'],
-            ['']
+            [0],
+            [4987]
         ];
     }
 }
